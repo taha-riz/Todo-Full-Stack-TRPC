@@ -11,7 +11,7 @@ export default function Todo({ todo }: TodoProps) {
   const trpc = api.useContext();
 
   const { mutate: deleteMutation } = api.todo.delete.useMutation({
-    onSuccess: async () => {
+    onSuccess: () => {
       toast.success("Todo Error Deleted Successfully");
     },
     onSettled: async () => {
@@ -19,7 +19,7 @@ export default function Todo({ todo }: TodoProps) {
     },
   });
   const { mutate: doneMutation } = api.todo.toggle.useMutation({
-    onSuccess: async ({ done }) => {
+    onSuccess: ({ done }) => {
       done ? toast.success("Task completed") : toast.error("Task Incomplete");
     },
     onSettled: async () => {
